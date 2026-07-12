@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import java.time.Duration;
 
-@ConfigurationProperties(prefix = "Ultimate")
+@ConfigurationProperties(prefix = "ultimate")
 public record UltimateProperties(
 
         @DefaultValue("0.1.0-SNAPSHOT")
