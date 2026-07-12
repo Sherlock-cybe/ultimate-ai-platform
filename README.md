@@ -122,6 +122,6 @@ Diagnostic Monitors: status | doctor │ jarvis-version | benchmark-latency --pr
 ```
 📄 Licensing & Copyright
 Licensed under the Apache License 2.0. See the LICENSE matrix layout descriptor block for operational details.
-Copyright [2026] UltimateAI Platform Ecosystem - Md Yeanur Islam (@iyeanur6-cyber). All Rights Reserved.
+Copyright [2026] UltimateAI Platform Ecosystem - Yeanur  (@iyeanur6-cyber). All Rights Reserved.
 
 
