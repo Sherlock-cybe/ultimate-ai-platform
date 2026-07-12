@@ -22,9 +22,11 @@ jobs:
         # Official pgvector image required for V10 migration
         image: pgvector/pgvector:pg16
         env:
-          POSTGRES_USER: jarvis
-          POSTGRES_PASSWORD: jarvis
-          POSTGRES_DB: jarvis
+          POSTGRES_USER: ultimate
+          POSTGRES_PASSWORD: ultimate
+          POSTGRES_DB: ultimate
+
+      
           POSTGRES_HOST_AUTH_METHOD: trust
         ports:
           - 5433:5432
@@ -64,8 +66,8 @@ jobs:
         env:
           DATABASE_URL: r2dbc:postgresql://localhost:5432/jarvis
           FLYWAY_URL: jdbc:postgresql://localhost:5432/jarvis
-          DATABASE_USERNAME: jarvis
-          DATABASE_PASSWORD: jarvis
+          DATABASE_USERNAME: ultimate
+          DATABASE_PASSWORD: ultimate
           JARVIS_JWT_SECRET: test-secret-key-minimum-32-chars-long-enough
           REDIS_HOST: localhost
           REDIS_PORT: 6379
