@@ -1,6 +1,6 @@
 package ai.ultimate.agents;
 
-import ai.ultimate.tools.JarvisTool;
+import ai.ultimate.tools.UltimateTool;
 import ai.ultimate.tools.ToolRegistry;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -313,7 +313,7 @@ public class AgentExecutor {
     /**
      * Execute a tool by name with given input.
      *
-     * Scans registered JarvisTool beans for @Tool
+     * Scans registered UltimateTool beans for @Tool
      * annotated methods matching the tool name.
      *
      * Exact case-insensitive matching only.
@@ -339,7 +339,7 @@ public class AgentExecutor {
         long startMs = System.currentTimeMillis();
 
         try {
-            for (JarvisTool tool :
+            for (UltimateTool tool :
                     toolRegistry.getAll()) {
 
                 for (Method method :
@@ -412,7 +412,7 @@ public class AgentExecutor {
     /**
      * Build formatted tool list for planner system prompt.
      *
-     * Scans all JarvisTool beans and collects @Tool
+     * Scans all UltimateTool beans and collects @Tool
      * method names + descriptions. New tools added via
      * @Component are automatically included.
      *
@@ -421,7 +421,7 @@ public class AgentExecutor {
     private String buildToolList() {
         Map<String, String> tools = new LinkedHashMap<>();
 
-        for (JarvisTool tool : toolRegistry.getAll()) {
+        for (UltimateTool tool : toolRegistry.getAll()) {
             for (Method method :
                     tool.getClass().getDeclaredMethods()) {
 
@@ -453,7 +453,7 @@ public class AgentExecutor {
     private String buildToolNames() {
         StringBuilder sb = new StringBuilder();
 
-        for (JarvisTool tool : toolRegistry.getAll()) {
+        for (UltimateTool tool : toolRegistry.getAll()) {
             for (Method method :
                     tool.getClass().getDeclaredMethods()) {
 

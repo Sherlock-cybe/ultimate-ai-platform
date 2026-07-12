@@ -17,7 +17,7 @@ import java.util.UUID;
 import java.util.stream.Stream;
 
 import ai.ultimate.config.TestSecurityConfig;
-import ai.ultimate.config.WithMockJarvisUser;
+import ai.ultimate.config.WithMockUltimateUser;
 import ai.ultimate.security.jwt.JwtService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -40,7 +40,7 @@ import reactor.core.publisher.Mono;
 @WebFluxTest(controllers = {MemoryController.class})
 @ExtendWith(MockitoExtension.class)
 @Import(TestSecurityConfig.class)
-@WithMockJarvisUser(principal = MemoryControllerTest.USER_ID_RAW)
+@WithMockUltimateUser(principal = MemoryControllerTest.USER_ID_RAW)
 class MemoryControllerTest {
 
     public static final String USER_ID_RAW = "3bb93254-6ce0-4cd3-91b3-a292a46e8fe9";

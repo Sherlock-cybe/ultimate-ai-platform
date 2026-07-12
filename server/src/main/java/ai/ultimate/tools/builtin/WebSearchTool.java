@@ -1,6 +1,6 @@
 package ai.ultimate.tools.builtin;
 
-import ai.ultimate.tools.JarvisTool;
+import ai.ultimate.tools.UltimateTool;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.tool.annotation.Tool;
@@ -18,15 +18,15 @@ import java.util.List;
  *
  * API: DuckDuckGo Instant Answer API
  * FREE: No API key needed, no rate limits
- * Privacy: No tracking, fits Jarvis philosophy
+ * Privacy: No tracking, fits Ultimate philosophy
  *
  * FIXES (CodeRabbit):
  * 1. @ConditionalOnProperty — respects
- *    jarvis.tools.web-search.enabled=false in config.
+ *    Ultimate.tools.web-search.enabled=false in config.
  *    Previously always registered regardless of config.
  *
  * 2. maxRelatedTopics injected from config
- *    jarvis.tools.web-search.max-results.
+ *    Ultimate.tools.web-search.max-results.
  *    Previously hardcoded — config value was ignored.
  *
  * 3. @JsonProperty on SearchResponse + RelatedTopic
@@ -38,11 +38,11 @@ import java.util.List;
 @Slf4j
 @Component
 @ConditionalOnProperty(
-        prefix = "jarvis.tools.web-search",
+        prefix = "Ultimate.tools.web-search",
         name = "enabled",
         havingValue = "true",
         matchIfMissing = true)
-public class WebSearchTool implements JarvisTool {
+public class WebSearchTool implements UltimateTool {
 
     private static final String DDGO_API =
             "https://api.duckduckgo.com";
@@ -58,7 +58,7 @@ public class WebSearchTool implements JarvisTool {
 
     /**
      * FIX Issue 2: Injected from config instead of hardcoded.
-     * Reads from: jarvis.tools.web-search.max-results
+     * Reads from: Ultimate.tools.web-search.max-results
      * Default: 3 if not configured.
      * Minimum: 1 (Math.max guard prevents 0 or negative).
      */
@@ -68,7 +68,7 @@ public class WebSearchTool implements JarvisTool {
 
     public WebSearchTool(
             WebClient.Builder webClientBuilder,
-            @Value("${jarvis.tools.web-search.max-results:3}")
+            @Value("${Ultimate.tools.web-search.max-results:3}")
             int maxRelatedTopics) {
 
         // FIX Issue 2: guard against 0 or negative config

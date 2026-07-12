@@ -1,6 +1,6 @@
 package ai.ultimate.tools.builtin;
 
-import ai.ultimate.tools.JarvisTool;
+import ai.ultimate.tools.UltimateTool;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.tool.annotation.Tool;
@@ -13,7 +13,7 @@ import java.time.Duration;
 
 @Slf4j
 @Component
-public class WeatherTool implements JarvisTool {
+public class WeatherTool implements UltimateTool {
 
     private static final String BASE_URL =
             "https://api.openweathermap.org/data/2.5";
@@ -26,7 +26,7 @@ public class WeatherTool implements JarvisTool {
 
     public WeatherTool(
             WebClient.Builder webClientBuilder,
-            @Value("${jarvis.tools.weather.api-key:}")
+            @Value("${Ultimate.tools.weather.api-key:}")
             String apiKey) {
 
         this.apiKey = apiKey;

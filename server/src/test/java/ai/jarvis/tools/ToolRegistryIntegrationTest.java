@@ -22,7 +22,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * <p>Verifies three things that unit tests cannot cover:
  * <ol>
- *   <li>All {@code @Component} {@link JarvisTool} beans are auto-discovered
+ *   <li>All {@code @Component} {@link UltimateTool} beans are auto-discovered
  *       by Spring and injected into the registry.</li>
  *   <li>{@link ToolRegistry} holds the correct tool count after
  *       the full application context loads.</li>
@@ -33,7 +33,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(
         properties = {
                 "spring.shell.interactive.enabled=false",
-                "jarvis.security.jwt.secret="
+                "Ultimate.security.jwt.secret="
                         + "integration-test-secret-key-min-32-chars-long",
                 "spring.ai.google.genai.api-key="
         }
@@ -57,9 +57,9 @@ class ToolRegistryIntegrationTest {
     // ── 1. All tools auto-discovered by Spring ────────────────────────────
 
     @Test
-    @DisplayName("all builtin JarvisTool beans are auto-discovered by Spring")
+    @DisplayName("all builtin UltimateTool beans are auto-discovered by Spring")
     void allToolsShouldBeAutoDiscovered() {
-        List<JarvisTool> tools = toolRegistry.getAll();
+        List<UltimateTool> tools = toolRegistry.getAll();
 
         assertThat(tools)
                 .as("DateTimeTool must be auto-discovered via @Component")

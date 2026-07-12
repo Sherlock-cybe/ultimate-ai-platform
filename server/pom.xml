@@ -14,14 +14,14 @@
     </parent>
 
     <groupId>ai.ultimate</groupId>
-    <artifactId>jarvis-server</artifactId>
+    <artifactId>Ultimate-server</artifactId>
     <version>0.1.0</version>
-    <name>Jarvis AI Platform — Server</name>
+    <name>Ultimate AI Platform — Server</name>
     <description>
         Modular, local-first, open-source AI assistant
         platform. Built with Spring Boot 4 and Spring AI 2.
     </description>
-    <url>https://github.com/sujankim/jarvis-ai-platform</url>
+    <url>https://github.com/sujankim/Ultimate-ai-platform</url>
 
     <licenses>
         <license>
@@ -44,13 +44,13 @@
 
     <scm>
         <connection>
-            scm:git:git://github.com/sujankim/jarvis-ai-platform.git
+            scm:git:git://github.com/sujankim/Ultimate-ai-platform.git
         </connection>
         <developerConnection>
-            scm:git:ssh://git@github.com/sujankim/jarvis-ai-platform.git
+            scm:git:ssh://git@github.com/sujankim/Ultimate-ai-platform.git
         </developerConnection>
         <tag>HEAD</tag>
-        <url>https://github.com/sujankim/jarvis-ai-platform</url>
+        <url>https://github.com/sujankim/Ultimate-ai-platform</url>
     </scm>
 
     <properties>
@@ -376,9 +376,9 @@
                 <artifactId>flyway-maven-plugin</artifactId>
                 <version>${flyway.version}</version>
                 <configuration>
-                    <url>jdbc:postgresql://localhost:5433/jarvis</url>
-                    <user>jarvis</user>
-                    <password>jarvis</password>
+                    <url>jdbc:postgresql://localhost:5433/Ultimate</url>
+                    <user>Ultimate</user>
+                    <password>Ultimate</password>
                     <locations>
                         <location>
                             filesystem:src/main/resources/db/migration

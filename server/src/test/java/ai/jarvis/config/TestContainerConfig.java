@@ -19,9 +19,9 @@ import org.testcontainers.postgresql.PostgreSQLContainer;
  */
 public class TestContainerConfig {
 
-    public static final String DATABASE_NAME = "jarvis";
-    public static final String USERNAME = "jarvis";
-    public static final String PASSWORD = "jarvis";
+    public static final String DATABASE_NAME = "Ultimate";
+    public static final String USERNAME = "Ultimate";
+    public static final String PASSWORD = "Ultimate";
 
     // Testcontainers 2.x — PostgreSQLContainer is not parameterized.
     // Do not add type parameter <> here.

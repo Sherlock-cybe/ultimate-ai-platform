@@ -1,6 +1,6 @@
 package ai.ultimate.voice.exception;
 
-import ai.ultimate.common.exception.JarvisException;
+import ai.ultimate.common.exception.UltimateException;
 import org.springframework.http.HttpStatus;
 
 /**
@@ -12,7 +12,7 @@ import org.springframework.http.HttpStatus;
  *      Ollama does not support Whisper natively.
  * New: Points to correct backends (Groq or whisper.cpp)
  */
-public class VoiceException extends JarvisException {
+public class VoiceException extends UltimateException {
 
     public VoiceException(String message) {
         super(

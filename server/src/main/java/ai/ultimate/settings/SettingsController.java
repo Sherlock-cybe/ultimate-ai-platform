@@ -1,7 +1,7 @@
 package ai.ultimate.settings;
 
 import ai.ultimate.common.model.ApiResponse;
-import ai.ultimate.config.JarvisProperties;
+import ai.ultimate.config.UltimateProperties;
 import ai.ultimate.voice.TextToSpeechService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -28,17 +28,17 @@ import java.util.UUID;
 @RequestMapping("/api/v1/settings")
 @RequiredArgsConstructor
 @SecurityRequirement(name = "Bearer Auth")
-@Tag(name = "Settings", description = "Current Jarvis runtime configuration")
+@Tag(name = "Settings", description = "Current Ultimate runtime configuration")
 public class SettingsController {
 
-    private final JarvisProperties jarvisProperties;
+    private final UltimateProperties UltimateProperties;
     private final Environment environment;
     private final TextToSpeechService textToSpeechService;
     private final RuntimeSettingsService runtimeSettingsService;
 
     @Operation(
             summary = "Get current settings",
-            description = "Returns the current Jarvis configuration used by the web UI settings page."
+            description = "Returns the current Ultimate configuration used by the web UI settings page."
     )
     @io.swagger.v3.oas.annotations.responses.ApiResponses({
             @io.swagger.v3.oas.annotations.responses.ApiResponse(
@@ -81,7 +81,7 @@ public class SettingsController {
     }
 
     private SettingsResponse buildResponse() {
-        JarvisProperties.AiProperties ai = jarvisProperties.ai();
+        UltimateProperties.AiProperties ai = UltimateProperties.ai();
 
         return new SettingsResponse(
                 buildVoiceSettings(),
@@ -90,12 +90,12 @@ public class SettingsController {
                         environment.getProperty("spring.ai.ollama.chat.model", ""),
                         hasText(environment.getProperty("spring.ai.google.genai.api-key", ""))),
                 new SettingsResponse.SystemInfo(
-                        safeString(jarvisProperties.version()),
+                        safeString(UltimateProperties.version()),
                         System.getProperty("java.version", "")));
     }
 
     private SettingsResponse.VoiceSettings buildVoiceSettings() {
-        JarvisProperties.VoiceProperties voice = jarvisProperties.voice();
+        UltimateProperties.VoiceProperties voice = UltimateProperties.voice();
         return new SettingsResponse.VoiceSettings(
                 safeString(runtimeSettingsService.getVoiceName()),
                 runtimeSettingsService.getVoiceSpeed(),

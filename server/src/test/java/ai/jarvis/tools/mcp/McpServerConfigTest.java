@@ -27,7 +27,7 @@ class McpServerConfigTest {
                 new McpServerConfig(registry);
 
         ToolCallbackProvider provider =
-                config.jarvisToolCallbacks();
+                config.UltimateToolCallbacks();
 
         // Provider must exist — Spring AI MCP Server
         // auto-discovers it at startup
@@ -46,7 +46,7 @@ class McpServerConfigTest {
                 new McpServerConfig(registry);
 
         ToolCallbackProvider provider =
-                config.jarvisToolCallbacks();
+                config.UltimateToolCallbacks();
 
         assertThat(provider).isNotNull();
 
@@ -69,7 +69,7 @@ class McpServerConfigTest {
 
         // Should not throw — empty provider is valid
         ToolCallbackProvider provider =
-                config.jarvisToolCallbacks();
+                config.UltimateToolCallbacks();
 
         assertThat(provider).isNotNull();
     }
@@ -87,7 +87,7 @@ class McpServerConfigTest {
                 new McpServerConfig(registry);
 
         ToolCallbackProvider provider =
-                config.jarvisToolCallbacks();
+                config.UltimateToolCallbacks();
 
         // DateTimeTool: 4 @Tool methods
         // CalculatorTool: 3 @Tool methods

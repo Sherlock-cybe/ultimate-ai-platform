@@ -1,6 +1,6 @@
 package ai.ultimate.settings;
 
-import ai.ultimate.config.JarvisProperties;
+import ai.ultimate.config.UltimateProperties;
 import ai.ultimate.config.SecurityConfig;
 import ai.ultimate.security.jwt.JwtAuthenticationFilter;
 import ai.ultimate.security.jwt.JwtService;
@@ -31,14 +31,14 @@ class SettingsControllerTest {
     @DisplayName("When voice and Gemini are configured")
     @WebFluxTest(controllers = SettingsController.class)
     @Import({SecurityConfig.class, JwtAuthenticationFilter.class})
-    @EnableConfigurationProperties(JarvisProperties.class)
+    @EnableConfigurationProperties(UltimateProperties.class)
     @TestPropertySource(properties = {
-            "jarvis.version=1.2.3-test",
-            "jarvis.security.jwt.secret=test-secret-key-long-enough-for-settings",
-            "jarvis.voice.tts.voice=Test Voice",
-            "jarvis.voice.tts.speed=1.25",
-            "jarvis.voice.whisper.model=whisper-test",
-            "jarvis.ai.primary-provider=gemini",
+            "Ultimate.version=1.2.3-test",
+            "Ultimate.security.jwt.secret=test-secret-key-long-enough-for-settings",
+            "Ultimate.voice.tts.voice=Test Voice",
+            "Ultimate.voice.tts.speed=1.25",
+            "Ultimate.voice.whisper.model=whisper-test",
+            "Ultimate.ai.primary-provider=gemini",
             "spring.ai.ollama.chat.model=llama-test",
             "spring.ai.google.genai.api-key=test-gemini-key"
     })
@@ -104,14 +104,14 @@ class SettingsControllerTest {
     @DisplayName("When voice and Gemini are not configured")
     @WebFluxTest(controllers = SettingsController.class)
     @Import({SecurityConfig.class, JwtAuthenticationFilter.class})
-    @EnableConfigurationProperties(JarvisProperties.class)
+    @EnableConfigurationProperties(UltimateProperties.class)
     @TestPropertySource(properties = {
-            "jarvis.version=1.2.3-test",
-            "jarvis.security.jwt.secret=test-secret-key-long-enough-for-settings",
-            "jarvis.voice.tts.voice=",
-            "jarvis.voice.tts.speed=1.25",
-            "jarvis.voice.whisper.model=whisper-test",
-            "jarvis.ai.primary-provider=ollama",
+            "Ultimate.version=1.2.3-test",
+            "Ultimate.security.jwt.secret=test-secret-key-long-enough-for-settings",
+            "Ultimate.voice.tts.voice=",
+            "Ultimate.voice.tts.speed=1.25",
+            "Ultimate.voice.whisper.model=whisper-test",
+            "Ultimate.ai.primary-provider=ollama",
             "spring.ai.ollama.chat.model=llama-test",
             "spring.ai.google.genai.api-key="
     })

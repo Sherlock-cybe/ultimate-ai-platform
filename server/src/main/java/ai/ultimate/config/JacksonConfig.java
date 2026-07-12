@@ -9,8 +9,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class JacksonConfig {
 
-    @Bean("jarvisObjectMapper")    // ← named, NOT @Primary
-    public ObjectMapper jarvisObjectMapper() {
+    @Bean("UltimateObjectMapper")    // ← named, NOT @Primary
+    public ObjectMapper UltimateObjectMapper() {
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());
         mapper.disable(

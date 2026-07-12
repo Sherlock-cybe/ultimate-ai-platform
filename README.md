@@ -92,7 +92,7 @@ Autonomous Chat: chat | chat --new │ ask -m "Prompt Input"
 Vector Memory Management: memory list | memory add │ memory delete --number 1 | memory clear
 Active Working Sessions: session | new-session │ switch-session -n 2
 Sandbox Tooling Arrays: tools | tool-test --tool datetime
-Diagnostic Monitors: status | doctor │ jarvis-version | benchmark-latency --provider ollama --runs 10
+Diagnostic Monitors: status | doctor │ Ultimate-version | benchmark-latency --provider ollama --runs 10
 🏗️ Architecture Mapping
 ```
       Spring Shell Console Interface (ultimate:> prompt)

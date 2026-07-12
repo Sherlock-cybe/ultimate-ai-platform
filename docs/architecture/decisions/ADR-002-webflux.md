@@ -5,7 +5,7 @@
 
 ## Context
 
-Jarvis streams AI tokens in real-time.
+Ultimate streams AI tokens in real-time.
 We needed a web framework for this requirement.
 
 ## Decision

@@ -15,10 +15,10 @@ import org.springframework.stereotype.Component;
  * Output format is suitable for table inclusion in papers.
  *
  * USAGE:
- * jarvis:> benchmark-latency --provider ollama
- * jarvis:> benchmark-latency --provider gemini
- * jarvis:> benchmark-throughput --provider ollama
- * jarvis:> benchmark-system
+ * Ultimate:> benchmark-latency --provider ollama
+ * Ultimate:> benchmark-latency --provider gemini
+ * Ultimate:> benchmark-throughput --provider ollama
+ * Ultimate:> benchmark-system
  */
 @Slf4j
 @Component
@@ -51,7 +51,7 @@ public class BenchmarkCommands {
         if (!benchmarkService.isProviderAvailable(provider)) {
             return "Provider '" + provider
                     + "' is not available.\n"
-                    + "Check: jarvis:> status";
+                    + "Check: Ultimate:> status";
         }
 
         System.out.println(

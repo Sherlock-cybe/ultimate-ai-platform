@@ -1,6 +1,6 @@
 package ai.ultimate.tools.builtin;
 
-import ai.ultimate.tools.JarvisTool;
+import ai.ultimate.tools.UltimateTool;
 import org.springframework.ai.tool.annotation.Tool;
 import org.springframework.ai.tool.annotation.ToolParam;
 import org.springframework.stereotype.Component;
@@ -25,7 +25,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.xml.sax.InputSource;
 
 @Component
-public class CodiumAutomationTool implements JarvisTool {
+public class CodiumAutomationTool implements UltimateTool {
 
     private static final long MAX_PAYLOAD_SIZE_BYTES = 5 * 1024 * 1024;
     private static final int MAX_LOG_SIZE_CHARS = 100_000;
@@ -39,7 +39,7 @@ public class CodiumAutomationTool implements JarvisTool {
     public String executeInCodium(
         @ToolParam(description = "Workspace deployment directory path") String projectPath,
         @ToolParam(description = "Target compile binary variant: 'apk' or 'jar'") String buildType,
-        @ToolParam(description = "The main source code string produced by Jarvis AI") String mainCode,
+        @ToolParam(description = "The main source code string produced by Ultimate AI") String mainCode,
         @ToolParam(description = "The build system configuration layout input text") String manifestXml,
         @ToolParam(description = "The UI layout XML source code string") String layoutXml,
         @ToolParam(description = "Custom runtime environment Docker toolchain container image path") String customDockerImage

@@ -26,13 +26,13 @@ import javax.sql.DataSource;
 public class JdbcConfig {
 
     @Value("${spring.datasource.url:"
-            + "jdbc:postgresql://localhost:5433/jarvis}")
+            + "jdbc:postgresql://localhost:5433/Ultimate}")
     private String url;
 
-    @Value("${spring.datasource.username:jarvis}")
+    @Value("${spring.datasource.username:Ultimate}")
     private String username;
 
-    @Value("${spring.datasource.password:jarvis}")
+    @Value("${spring.datasource.password:Ultimate}")
     private String password;
 
     @Bean

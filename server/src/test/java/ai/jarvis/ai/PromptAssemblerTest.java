@@ -29,7 +29,7 @@ class PromptAssemblerTest {
     @DisplayName("assembles system + working memory + user")
     void shouldIncludeSystemAndUserMessage() {
         Prompt prompt = assembler.assemble(
-                "Hello Jarvis",
+                "Hello Ultimate",
                 "Date: June 12 2026",
                 List.of(),
                 "dravin"

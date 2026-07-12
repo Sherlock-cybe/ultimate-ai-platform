@@ -220,7 +220,7 @@ Do not change this ordering without an architecture discussion.
 ```text
 tools/
 │
-├── JarvisTool
+├── UltimateTool
 ├── ToolRegistry
 │
 ├── builtin/

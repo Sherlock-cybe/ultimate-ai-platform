@@ -37,7 +37,7 @@ public class AuthCommands {
     }
 
     @Command(name = "login",
-            description = "Login to Jarvis")
+            description = "Login to Ultimate")
     public String login() {
 
         if (state.isLoggedIn()) {
@@ -47,7 +47,7 @@ public class AuthCommands {
         }
 
         if (!http.isServerReachable()) {
-            return "Cannot reach server. Is Jarvis running?";
+            return "Cannot reach server. Is Ultimate running?";
         }
 
         String username = lineReader.readLine("Username: ");
@@ -101,7 +101,7 @@ public class AuthCommands {
 
     @Command(
             name = "logout",
-            description = "Logout from Jarvis"
+            description = "Logout from Ultimate"
     )
     public String logout() {
         if (!state.isLoggedIn()) {

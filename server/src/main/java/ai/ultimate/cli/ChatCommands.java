@@ -36,7 +36,7 @@ public class ChatCommands {
 
     @Command(
             name = "chat",
-            description = "Start an interactive chat with Jarvis"
+            description = "Start an interactive chat with Ultimate"
     )
     public void chat(
             @Option(
@@ -138,7 +138,7 @@ public class ChatCommands {
 
     private void sendAndStream(String message) {
         System.out.println();
-        System.out.print("Jarvis: ");
+        System.out.print("Ultimate: ");
         System.out.flush();
 
         ChatRequest request = new ChatRequest(

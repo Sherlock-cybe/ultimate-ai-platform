@@ -27,13 +27,13 @@ class MemoryEmbeddingRepositoryTest {
                         .SemanticSearchResult(
                         id,
                         MemoryType.FACT,
-                        "User builds Jarvis",
+                        "User builds Ultimate",
                         0.80, 5, 0.87
                 );
 
         assertThat(result.id()).isEqualTo(id);
         assertThat(result.content())
-                .isEqualTo("User builds Jarvis");
+                .isEqualTo("User builds Ultimate");
         assertThat(result.similarity()).isEqualTo(0.87);
         assertThat(result.type())
                 .isEqualTo(MemoryType.FACT);
@@ -52,7 +52,7 @@ class MemoryEmbeddingRepositoryTest {
                         .SemanticSearchResult(
                         id,
                         MemoryType.GOAL,
-                        "Build Jarvis AI Platform",
+                        "Build Ultimate AI Platform",
                         0.90, 12, 0.92
                 );
 
@@ -60,7 +60,7 @@ class MemoryEmbeddingRepositoryTest {
         assertThat(result.type())
                 .isEqualTo(MemoryType.GOAL);
         assertThat(result.content())
-                .isEqualTo("Build Jarvis AI Platform");
+                .isEqualTo("Build Ultimate AI Platform");
         assertThat(result.importance()).isEqualTo(0.90);
         assertThat(result.accessCount()).isEqualTo(12);
         assertThat(result.similarity()).isEqualTo(0.92);

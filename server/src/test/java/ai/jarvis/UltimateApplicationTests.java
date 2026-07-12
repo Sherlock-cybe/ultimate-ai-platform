@@ -7,7 +7,7 @@ import org.springframework.test.context.TestPropertySource;
 @SpringBootTest
 @TestPropertySource(properties = {
         // ── Security ────────────────────────────────
-        "jarvis.security.jwt.secret="
+        "Ultimate.security.jwt.secret="
                 + "test-secret-key-minimum-32-characters"
                 + "-long-enough-for-jwt-hmac-sha256",
 
@@ -23,15 +23,15 @@ import org.springframework.test.context.TestPropertySource;
         // ── Database ─────────────────────────────────
         "spring.flyway.enabled=false",
         "spring.r2dbc.url="
-                + "r2dbc:postgresql://localhost:5433/jarvis",
+                + "r2dbc:postgresql://localhost:5433/Ultimate",
         "spring.datasource.url="
-                + "jdbc:postgresql://localhost:5433/jarvis",
-        "spring.datasource.username=jarvis",
-        "spring.datasource.password=jarvis",
+                + "jdbc:postgresql://localhost:5433/Ultimate",
+        "spring.datasource.username=Ultimate",
+        "spring.datasource.password=Ultimate",
         "spring.flyway.url="
-                + "jdbc:postgresql://localhost:5433/jarvis",
-        "spring.flyway.user=jarvis",
-        "spring.flyway.password=jarvis",
+                + "jdbc:postgresql://localhost:5433/Ultimate",
+        "spring.flyway.user=Ultimate",
+        "spring.flyway.password=Ultimate",
 
         // ── Redis ─────────────────────────────────────
         "spring.data.redis.host=localhost",
@@ -41,7 +41,7 @@ import org.springframework.test.context.TestPropertySource;
         "spring.ai.vectorstore.pgvector"
                 + ".initialize-schema=false"
 })
-class JarvisApplicationTests {
+class UltimateApplicationTests {
 
     @Test
     void contextLoads() {

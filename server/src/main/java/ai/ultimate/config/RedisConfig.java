@@ -8,7 +8,7 @@ import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 /**
- * Redis configuration for Jarvis.
+ * Redis configuration for Ultimate.
  *
  * WHY EXPLICIT CONFIG:
  * Spring Boot auto-configures ReactiveRedisTemplate<String, String>

@@ -17,9 +17,9 @@ import java.util.List;
  * Assembles the complete prompt for each AI request.
  *
  * ASSEMBLY ORDER (top to bottom):
- * 1. System prompt   — Jarvis personality + rules
+ * 1. System prompt   — Ultimate personality + rules
  * 2. Working memory  — current date/time/user/model
- * 3. Long-term memory— what Jarvis knows about user (Phase 2)
+ * 3. Long-term memory— what Ultimate knows about user (Phase 2)
  * 4. RAG context     — relevant document excerpts (Phase 3)
  * 5. Session history — recent conversation messages
  * 6. Current message — what user just sent
@@ -39,7 +39,7 @@ public class PromptAssembler {
 
     private static final String DEFAULT_SYSTEM_PROMPT =
             """
-            You are Jarvis, an intelligent personal AI assistant.
+            You are Ultimate, an intelligent personal AI assistant.
             You are helpful, professional, and concise.
             Use markdown formatting in your responses.
             Never make up facts. If unsure, say so clearly.

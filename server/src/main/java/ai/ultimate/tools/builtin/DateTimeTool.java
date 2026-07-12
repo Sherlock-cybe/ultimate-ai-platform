@@ -1,6 +1,6 @@
 package ai.ultimate.tools.builtin;
 
-import ai.ultimate.tools.JarvisTool;
+import ai.ultimate.tools.UltimateTool;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.tool.annotation.Tool;
 import org.springframework.ai.tool.annotation.ToolParam;
@@ -32,7 +32,7 @@ import java.util.TimeZone;
  */
 @Slf4j
 @Component
-public class DateTimeTool implements JarvisTool {
+public class DateTimeTool implements UltimateTool {
 
     private static final DateTimeFormatter FULL_FORMATTER =
             DateTimeFormatter.ofPattern(

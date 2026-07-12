@@ -12,7 +12,7 @@ assignees: ''
 Please run the health check first:
 
 ```text
-jarvis:> doctor
+Ultimate:> doctor
 ```
 
 Copy and paste the output below.
@@ -47,7 +47,7 @@ What actually happened.
 
 ## Doctor Output
 
-Paste `jarvis:> doctor` output here.
+Paste `Ultimate:> doctor` output here.
 
 ```text
 ```
@@ -56,7 +56,7 @@ Paste `jarvis:> doctor` output here.
 
 ## Error Logs
 
-Paste `jarvis:> logs --errors` output here.
+Paste `Ultimate:> logs --errors` output here.
 
 ```text
 ```
@@ -72,7 +72,7 @@ Paste `jarvis:> logs --errors` output here.
 | Docker version | e.g. 27.0.0                            |
 | Ollama version | e.g. 0.5.0                             |
 | Ollama model   | e.g. llama3.1:8b                       |
-| Jarvis version | e.g. 0.1.0                             |
+| Ultimate version | e.g. 0.1.0                             |
 
 ---
 

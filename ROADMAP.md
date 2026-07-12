@@ -35,7 +35,7 @@ Architecture designed, repository structured, and documentation written before a
 - ✅ SSE token streaming (WebFlux)
 - ✅ JWT authentication (Argon2id)
 - ✅ PostgreSQL + Flyway (V1–V8)
-- ✅ Spring Shell 4 CLI (`jarvis:>` prompt)
+- ✅ Spring Shell 4 CLI (`Ultimate:>` prompt)
 - ✅ Custom JLine terminal
 - ✅ Session management + message persistence
 - ✅ Working memory (date/time/user injection)
@@ -119,7 +119,7 @@ Architecture designed, repository structured, and documentation written before a
 
 ## Core
 
-- ✅ Strategy-based `JarvisTool`
+- ✅ Strategy-based `UltimateTool`
 - ✅ ToolRegistry
 - ✅ DateTimeTool
 - ✅ CalculatorTool
@@ -256,7 +256,7 @@ Sub-issues will be opened after the framework vote.
 
 **Target:** `v0.8.0` — After Phase 7 Web UI ships
 
-**Vision:** Extend the ReACT `AgentExecutor` to orchestrate industry-standard open-source command-line tools already installed on the user's machine. No new infrastructure—just new `JarvisTool` implementations following the existing tool engine architecture.
+**Vision:** Extend the ReACT `AgentExecutor` to orchestrate industry-standard open-source command-line tools already installed on the user's machine. No new infrastructure—just new `UltimateTool` implementations following the existing tool engine architecture.
 
 > **Everything in Phase 8 runs 100% locally.**  
 > No cloud. No telemetry. No new dependencies beyond what the user already has installed.
@@ -269,10 +269,10 @@ Sub-issues will be opened after the framework vote.
 
 ```text
 User: "Trim the last 10 seconds of recording.wav"
-Jarvis → FfmpegTool → ffmpeg command → output.wav
+Ultimate → FfmpegTool → ffmpeg command → output.wav
 
 User: "Compress this video to under 50MB"
-Jarvis → FfmpegTool → ffmpeg command → compressed.mp4
+Ultimate → FfmpegTool → ffmpeg command → compressed.mp4
 ```
 
 **Implementation**
@@ -403,19 +403,19 @@ A new dashboard panel in the Phase 7 Web UI providing:
 
 | Feature | Implementation Pattern | Difficulty |
 |---------|-------------------------|------------|
-| FfmpegTool | `ProcessBuilder` + `JarvisTool` | Intermediate |
-| SoxTool (voice cleanup) | `ProcessBuilder` + `JarvisTool` | Beginner |
-| ImageMagickTool | `ProcessBuilder` + `JarvisTool` | Beginner |
-| BrowserTool (Chromium) | Playwright + `JarvisTool` | Advanced |
-| Syncthing backup & restore | REST API + `JarvisTool` | Intermediate |
-| Git analytics tool | `ProcessBuilder` + `JarvisTool` | Beginner |
+| FfmpegTool | `ProcessBuilder` + `UltimateTool` | Intermediate |
+| SoxTool (voice cleanup) | `ProcessBuilder` + `UltimateTool` | Beginner |
+| ImageMagickTool | `ProcessBuilder` + `UltimateTool` | Beginner |
+| BrowserTool (Chromium) | Playwright + `UltimateTool` | Advanced |
+| Syncthing backup & restore | REST API + `UltimateTool` | Intermediate |
+| Git analytics tool | `ProcessBuilder` + `UltimateTool` | Beginner |
 | Progress dashboard panel | Chart.js (Web UI) | Intermediate |
 
 ---
 
 **Phase 8 Goal**
 
-Bring everyday workstation automation into Jarvis while staying true to the project's core philosophy:
+Bring everyday workstation automation into Ultimate while staying true to the project's core philosophy:
 
 > **Your AI. Your Data. Your Machine.**
 
@@ -427,10 +427,10 @@ Bring everyday workstation automation into Jarvis while staying true to the proj
 | Our own LLM | Uses existing models |
 | Central telemetry | Privacy-first |
 | Microservices from day one | Monolith-first |
-| VSCodium LSP bridge | A separate product requiring its own engineering effort, release cycle, and maintenance. Better developed as an independent project built on top of Jarvis. |
+| VSCodium LSP bridge | A separate product requiring its own engineering effort, release cycle, and maintenance. Better developed as an independent project built on top of Ultimate. |
 | Cross-device pgvector sync | Vector embeddings are model-specific and should be regenerated on each machine. Sync raw content instead of embeddings. |
-| Cloud sync of any kind | Violates Jarvis' local-first philosophy: **Your AI. Your Data. Your Machine.** |
-| Camera AI / pose detection | Outside the scope of Jarvis. This belongs to a different product category focused on computer vision rather than AI orchestration. |
+| Cloud sync of any kind | Violates Ultimate' local-first philosophy: **Your AI. Your Data. Your Machine.** |
+| Camera AI / pose detection | Outside the scope of Ultimate. This belongs to a different product category focused on computer vision rather than AI orchestration. |
 
 ---
 

@@ -11,7 +11,7 @@ import java.util.UUID;
  * Manages CLI session state.
  * Tracks: current user, JWT token, active session.
  * In-memory only for Phase 1.
- * Phase 3+: persist to ~/.jarvis/auth.json
+ * Phase 3+: persist to ~/.Ultimate/auth.json
  */
 @Slf4j
 @Component

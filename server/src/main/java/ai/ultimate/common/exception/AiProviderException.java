@@ -2,7 +2,7 @@ package ai.ultimate.common.exception;
 
 import org.springframework.http.HttpStatus;
 
-public class AiProviderException extends JarvisException {
+public class AiProviderException extends UltimateException {
 
     public AiProviderException(String message) {
         super(

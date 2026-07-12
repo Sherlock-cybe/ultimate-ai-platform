@@ -9,11 +9,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * MCP Server Configuration for Jarvis.
+ * MCP Server Configuration for Ultimate.
  *
- * Exposes Jarvis built-in tools as MCP ToolCallbackProvider.
+ * Exposes Ultimate built-in tools as MCP ToolCallbackProvider.
  * External MCP clients (Claude Desktop, IDEs, etc.)
- * can connect and use all Jarvis tools via MCP protocol.
+ * can connect and use all Ultimate tools via MCP protocol.
  *
  * Source: Official Spring AI docs + Baeldung:
  * @Bean ToolCallbackProvider tools() {
@@ -36,10 +36,10 @@ public class McpServerConfig {
     private final ToolRegistry toolRegistry;
 
     /**
-     * Register all Jarvis tools as MCP ToolCallbackProvider.
+     * Register all Ultimate tools as MCP ToolCallbackProvider.
      *
      * MethodToolCallbackProvider scans @Tool annotated
-     * methods on each JarvisTool instance and exposes
+     * methods on each UltimateTool instance and exposes
      * them via the MCP protocol.
      *
      * Spring AI MCP Server auto-discovers beans of
@@ -48,7 +48,7 @@ public class McpServerConfig {
      * @return ToolCallbackProvider with all built-in tools
      */
     @Bean
-    public ToolCallbackProvider jarvisToolCallbacks() {
+    public ToolCallbackProvider UltimateToolCallbacks() {
 
         if (!toolRegistry.hasTools()) {
             log.info(

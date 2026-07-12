@@ -4,7 +4,7 @@ import org.springframework.http.HttpStatus;
 
 import java.util.UUID;
 
-public class SessionNotFoundException extends JarvisException {
+public class SessionNotFoundException extends UltimateException {
 
     public SessionNotFoundException(UUID sessionId) {
         super(

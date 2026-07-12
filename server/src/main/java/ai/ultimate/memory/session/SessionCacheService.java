@@ -56,7 +56,7 @@ public class SessionCacheService {
             ReactiveRedisTemplate<String, String>
                     redisTemplate,
             MessageRepository messageRepository,
-            @Qualifier("jarvisObjectMapper")
+            @Qualifier("UltimateObjectMapper")
             ObjectMapper objectMapper) {
         this.redisTemplate = redisTemplate;
         this.messageRepository = messageRepository;

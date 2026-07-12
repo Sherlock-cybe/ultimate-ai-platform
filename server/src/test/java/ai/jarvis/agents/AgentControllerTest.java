@@ -1,7 +1,7 @@
 package ai.ultimate.agents;
 
 import ai.ultimate.config.TestSecurityConfig;
-import ai.ultimate.config.WithMockJarvisUser;
+import ai.ultimate.config.WithMockUltimateUser;
 import ai.ultimate.security.jwt.JwtService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -45,7 +45,7 @@ class AgentControllerTest {
     public static final UUID USER_ID = UUID.fromString(USER_ID_RAW);
 
     @Nested
-    @WithMockJarvisUser(principal = USER_ID_RAW)
+    @WithMockUltimateUser(principal = USER_ID_RAW)
     @DisplayName("When user is authenticated")
     class AuthenticatedTests {
 
@@ -147,7 +147,7 @@ class AgentControllerTest {
     }
 
     @Nested
-    @WithMockJarvisUser(principal = "invalid-malformed-token-subject")
+    @WithMockUltimateUser(principal = "invalid-malformed-token-subject")
     @DisplayName("When no JWT token provided")
     class UnauthorizedTests {
 

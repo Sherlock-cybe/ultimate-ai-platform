@@ -7,17 +7,17 @@ import org.springframework.stereotype.Component;
 
 /**
  * Customizes the Spring Shell prompt.
- * Changes default "shell:>" to "jarvis:>"
+ * Changes default "shell:>" to "Ultimate:>"
  *
  * PromptProvider is the official Spring Shell 4.0
  * interface for prompt customization.
  */
 @Component
-public class JarvisPromptProvider
+public class UltimatePromptProvider
         implements PromptProvider {
 
     @Override
     public @NonNull AttributedString getPrompt() {
-        return new AttributedString("jarvis:> ");
+        return new AttributedString("Ultimate:> ");
     }
 }

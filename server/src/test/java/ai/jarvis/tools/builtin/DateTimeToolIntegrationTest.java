@@ -31,7 +31,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(
         properties = {
                 "spring.shell.interactive.enabled=false",
-                "jarvis.security.jwt.secret="
+                "Ultimate.security.jwt.secret="
                         + "integration-test-secret-key-min-32-chars-long",
                 "spring.ai.google.genai.api-key="
         }

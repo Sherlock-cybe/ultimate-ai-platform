@@ -5,7 +5,7 @@ import static org.mockito.Mockito.when;
 import java.util.UUID;
 
 import ai.ultimate.config.TestSecurityConfig;
-import ai.ultimate.config.WithMockJarvisUser;
+import ai.ultimate.config.WithMockUltimateUser;
 import ai.ultimate.security.jwt.JwtService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -36,7 +36,7 @@ class ChatSessionControllerTest {
 
     @Nested
     @DisplayName("Tests with valid user UUID context")
-    @WithMockJarvisUser(principal = USER_ID_RAW)
+    @WithMockUltimateUser(principal = USER_ID_RAW)
     class ValidUserContext {
 
         private final UUID userId = UUID.fromString(USER_ID_RAW);
@@ -58,7 +58,7 @@ class ChatSessionControllerTest {
 
     @Nested
     @DisplayName("Tests with malformed user UUID token subject")
-    @WithMockJarvisUser(principal = "malformed-uuid-string-123")
+    @WithMockUltimateUser(principal = "malformed-uuid-string-123")
     class InvalidUserContext {
 
         @Test

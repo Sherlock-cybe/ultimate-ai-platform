@@ -217,13 +217,13 @@ UX Flow:
 
 ### 7. Settings Page
 Route: /settings
-Purpose: Configure Jarvis behavior
+Purpose: Configure Ultimate behavior
 
 Sections:
 
 A. Voice Settings
-→ JARVIS_VOICE_NAME (text input)
-→ JARVIS_VOICE_SPEED (slider 0.5-2.0)
+→ Ultimate_VOICE_NAME (text input)
+→ Ultimate_VOICE_SPEED (slider 0.5-2.0)
 → Test TTS button (POST /voice/speak)
 
 B. Provider Status

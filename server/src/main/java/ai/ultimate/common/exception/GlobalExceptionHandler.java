@@ -22,12 +22,12 @@ public class GlobalExceptionHandler {
 
     // ── Our custom exceptions ─────────────────────
 
-    @ExceptionHandler(JarvisException.class)
-    public Mono<ResponseEntity<ErrorResponse>> handleJarvisException(
-            JarvisException ex,
+    @ExceptionHandler(UltimateException.class)
+    public Mono<ResponseEntity<ErrorResponse>> handleUltimateException(
+            UltimateException ex,
             ServerWebExchange exchange){
 
-        log.error("Jarvis error: code={} message={}",
+        log.error("Ultimate error: code={} message={}",
                 ex.getErrorCode(), ex.getMessage());
 
         return Mono.just(ResponseEntity

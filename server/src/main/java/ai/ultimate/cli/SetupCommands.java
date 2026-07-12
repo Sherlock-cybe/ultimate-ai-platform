@@ -12,7 +12,7 @@ import java.util.Map;
 /**
  * First-run setup command.
  *
- * Usage: jarvis:> setup
+ * Usage: Ultimate:> setup
  *
  * Creates the first admin account.
  * Safe to run anytime — will reject if user exists.
@@ -43,7 +43,7 @@ public class SetupCommands {
 
         if (!http.isServerReachable()) {
             return "Server not reachable. "
-                    + "Is Jarvis running?";
+                    + "Is Ultimate running?";
         }
 
         if (state.isLoggedIn()) {
@@ -103,7 +103,7 @@ public class SetupCommands {
             Map<String, String> body = new HashMap<>();
             body.put("username", username.trim());
             body.put("email",
-                    username.trim() + "@jarvis.local");
+                    username.trim() + "@Ultimate.local");
             body.put("password", password.trim());
             body.put("displayName", displayName.trim());
 

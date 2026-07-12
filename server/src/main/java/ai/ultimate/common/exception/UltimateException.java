@@ -2,12 +2,12 @@ package ai.ultimate.common.exception;
 
 import org.springframework.http.HttpStatus;
 
-public class JarvisException extends RuntimeException{
+public class UltimateException extends RuntimeException{
 
     private final String errorCode;
     private final HttpStatus status;
 
-    public JarvisException(
+    public UltimateException(
             String errorCode,
             String message,
             HttpStatus status){

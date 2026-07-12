@@ -81,7 +81,7 @@ jobs:
                   `for our standards.`,
                   ``,
                   `We'll review your PR soon. ` +
-                  `Thanks for helping build Jarvis! 🚀`
+                  `Thanks for helping build Ultimate! 🚀`
                 ].join('\n');
 
             await github.rest.issues.createComment({

@@ -11,7 +11,7 @@ import java.util.UUID;
  * Long-term memory entity.
  * Maps to the 'memories' table (V9 migration).
  *
- * Each memory represents one fact Jarvis has
+ * Each memory represents one fact Ultimate has
  * learned about a user across any session.
  *
  * Memories are:

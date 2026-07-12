@@ -72,7 +72,7 @@ class VoiceConversationServiceTest {
         byte[] audio = new byte[]{1, 2, 3};
 
         when(transcriptionService.transcribe(audio))
-                .thenReturn(Mono.just("Hello Jarvis"));
+                .thenReturn(Mono.just("Hello Ultimate"));
         when(orchestrator.chat(
                 any(OrchestratorRequest.class)))
                 .thenReturn(Flux.just("Hi there."));
@@ -174,7 +174,7 @@ class VoiceConversationServiceTest {
         byte[] audio = new byte[]{1, 2, 3};
 
         when(transcriptionService.transcribe(audio))
-                .thenReturn(Mono.just("Hello Jarvis"));
+                .thenReturn(Mono.just("Hello Ultimate"));
         when(orchestrator.chat(
                 any(OrchestratorRequest.class)))
                 .thenReturn(
@@ -327,13 +327,13 @@ class VoiceConversationServiceTest {
     @DisplayName("VoiceChatEvent.token() creates TOKEN event")
     void shouldCreateTokenEvent() {
         VoiceChatEvent event =
-                VoiceChatEvent.token("Hello Jarvis");
+                VoiceChatEvent.token("Hello Ultimate");
 
         assertThat(event.type())
                 .isEqualTo(
                         VoiceChatEvent.EventType.TOKEN);
         assertThat(event.data())
-                .isEqualTo("Hello Jarvis");
+                .isEqualTo("Hello Ultimate");
     }
 
     @Test

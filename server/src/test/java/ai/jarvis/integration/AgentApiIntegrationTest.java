@@ -59,7 +59,7 @@ class AgentApiIntegrationTest {
         User mockUser = User.create(
                 currentUserId,
                 "testagentuser",
-                "testagentuser@jarvis.local",
+                "testagentuser@Ultimate.local",
                 encodedPassword,
                 "Test User",
                 UserRole.USER
@@ -112,7 +112,7 @@ class AgentApiIntegrationTest {
         User otherUser = User.create(
                 otherUserId,
                 "otheruser",
-                "other@jarvis.ai",
+                "other@Ultimate.ai",
                 encodedPassword,
                 "Other User",
                 UserRole.USER

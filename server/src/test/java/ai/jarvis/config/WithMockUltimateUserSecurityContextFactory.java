@@ -15,13 +15,13 @@ import org.springframework.security.core.context.SecurityContextHolderStrategy;
 import org.springframework.security.test.context.support.WithSecurityContextFactory;
 import org.springframework.util.Assert;
 
-public class WithMockJarvisUserSecurityContextFactory implements WithSecurityContextFactory<WithMockJarvisUser> {
+public class WithMockUltimateUserSecurityContextFactory implements WithSecurityContextFactory<WithMockUltimateUser> {
 
     private SecurityContextHolderStrategy securityContextHolderStrategy = SecurityContextHolder
             .getContextHolderStrategy();
 
     @Override
-    public SecurityContext createSecurityContext(WithMockJarvisUser withUser) {
+    public SecurityContext createSecurityContext(WithMockUltimateUser withUser) {
         List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
         for (String authority : withUser.authorities()) {
             grantedAuthorities.add(new SimpleGrantedAuthority(authority));

@@ -1,6 +1,6 @@
 package ai.ultimate.security.jwt;
 
-import ai.ultimate.config.JarvisProperties;
+import ai.ultimate.config.UltimateProperties;
 import ai.ultimate.user.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
@@ -22,9 +22,9 @@ import java.util.UUID;
 public class JwtService {
 
     private final SecretKey secretKey;
-    private final JarvisProperties properties;
+    private final UltimateProperties properties;
 
-    public JwtService(JarvisProperties properties) {
+    public JwtService(UltimateProperties properties) {
         this.properties = properties;
         this.secretKey = buildSecretKey(
                 properties.security().jwt().secret()

@@ -15,13 +15,13 @@ Every contribution matters — whether it is code, documentation, bug reports, t
 ```java
 package ai.ultimate.tools.builtin;
 
-import ai.ultimate.tools.JarvisTool;
+import ai.ultimate.tools.UltimateTool;
 import org.springframework.ai.tool.annotation.Tool;
 import org.springframework.ai.tool.annotation.ToolParam;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MyTool implements JarvisTool {
+public class MyTool implements UltimateTool {
 
     @Tool(
         description =
@@ -88,7 +88,7 @@ public String myTool(String input) {
 
 # 📝 Commit Message Convention
 
-Jarvis follows **Conventional Commits**.
+Ultimate follows **Conventional Commits**.
 
 ## Examples
 

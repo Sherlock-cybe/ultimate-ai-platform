@@ -5,8 +5,8 @@ import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import java.time.Duration;
 
-@ConfigurationProperties(prefix = "jarvis")
-public record JarvisProperties(
+@ConfigurationProperties(prefix = "Ultimate")
+public record UltimateProperties(
 
         @DefaultValue("0.1.0-SNAPSHOT")
         String version,
@@ -44,7 +44,7 @@ public record JarvisProperties(
             Duration accessTokenExpiry,
             @DefaultValue("7d")
             Duration refreshTokenExpiry,
-            @DefaultValue("jarvis-ai-platform")
+            @DefaultValue("Ultimate-ai-platform")
             String issuer
     ) {}
 
@@ -115,15 +115,15 @@ public record JarvisProperties(
     ) {}
 
     public record CliProperties(
-            @DefaultValue("${user.home}/.jarvis")
+            @DefaultValue("${user.home}/.Ultimate")
             String configDir,
-            @DefaultValue("${user.home}/.jarvis/logs")
+            @DefaultValue("${user.home}/.Ultimate/logs")
             String logDir,
-            @DefaultValue("${user.home}/.jarvis/auth.json")
+            @DefaultValue("${user.home}/.Ultimate/auth.json")
             String tokensFile,
-            @DefaultValue("${user.home}/.jarvis/session.json")
+            @DefaultValue("${user.home}/.Ultimate/session.json")
             String sessionFile,
-            @DefaultValue("${user.home}/.jarvis/preferences.json")
+            @DefaultValue("${user.home}/.Ultimate/preferences.json")
             String preferencesFile
     ) {}
 

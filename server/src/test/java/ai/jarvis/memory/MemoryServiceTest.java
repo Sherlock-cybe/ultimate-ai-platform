@@ -55,7 +55,7 @@ class MemoryServiceTest {
                 UUID.randomUUID(),
                 userId,
                 MemoryType.FACT,
-                "User is building Jarvis",
+                "User is building Ultimate",
                 sessionId,
                 0.50, 0, null,
                 Instant.now(), Instant.now()
@@ -93,13 +93,13 @@ class MemoryServiceTest {
     void saveShouldSkipDuplicates() {
         when(memoryRepository
                 .existsByUserIdAndContentIgnoreCase(
-                        userId, "User is building Jarvis"))
+                        userId, "User is building Ultimate"))
                 .thenReturn(Mono.just(true));
 
         StepVerifier
                 .create(memoryService.save(
                         userId, MemoryType.FACT,
-                        "User is building Jarvis",
+                        "User is building Ultimate",
                         sessionId))
                 .verifyComplete();
 
@@ -122,12 +122,12 @@ class MemoryServiceTest {
         StepVerifier
                 .create(memoryService.save(
                         userId, MemoryType.FACT,
-                        "User is building Jarvis",
+                        "User is building Ultimate",
                         sessionId))
                 .expectNextMatches(m ->
                         m.type() == MemoryType.FACT
                                 && m.content().equals(
-                                "User is building Jarvis"))
+                                "User is building Ultimate"))
                 .verifyComplete();
     }
 
@@ -152,7 +152,7 @@ class MemoryServiceTest {
         StepVerifier
                 .create(memoryService.save(
                         userId, MemoryType.FACT,
-                        "User is building Jarvis",
+                        "User is building Ultimate",
                         sessionId))
                 .verifyComplete();
     }
@@ -182,7 +182,7 @@ class MemoryServiceTest {
         StepVerifier
                 .create(memoryService.saveWithEmbedding(
                         userId, MemoryType.FACT,
-                        "User is building Jarvis",
+                        "User is building Ultimate",
                         sessionId))
                 .expectNextMatches(m ->
                         m.type() == MemoryType.FACT)
@@ -214,7 +214,7 @@ class MemoryServiceTest {
         StepVerifier
                 .create(memoryService.saveWithEmbedding(
                         userId, MemoryType.FACT,
-                        "User is building Jarvis",
+                        "User is building Ultimate",
                         sessionId))
                 .expectNextMatches(m ->
                         m.type() == MemoryType.FACT)
@@ -336,7 +336,7 @@ class MemoryServiceTest {
                 .expectNextMatches(result ->
                         result.contains("[FACT]")
                                 && result.contains(
-                                "User is building Jarvis")
+                                "User is building Ultimate")
                                 && result.contains("WHAT I KNOW"))
                 .verifyComplete();
     }
@@ -355,7 +355,7 @@ class MemoryServiceTest {
                         .SemanticSearchResult(
                         testMemory.id(),
                         MemoryType.FACT,
-                        "User is building Jarvis",
+                        "User is building Ultimate",
                         0.80, 5, 0.87
                 );
 
@@ -369,7 +369,7 @@ class MemoryServiceTest {
                 .expectNextMatches(formatted ->
                         formatted.contains("[FACT]")
                                 && formatted.contains(
-                                "User is building Jarvis")
+                                "User is building Ultimate")
                                 && formatted.contains("WHAT I KNOW"))
                 .verifyComplete();
 
@@ -409,7 +409,7 @@ class MemoryServiceTest {
                 .expectNextMatches(formatted ->
                         formatted.contains("[FACT]")
                                 && formatted.contains(
-                                "User is building Jarvis"))
+                                "User is building Ultimate"))
                 .verifyComplete();
     }
 

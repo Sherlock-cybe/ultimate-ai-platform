@@ -150,7 +150,7 @@ class MemoryExtractionServiceAdditionalTest {
                         [
                           {"type":"PREFERENCE","content":"User likes Java"},
                           {"type":"FACT","content":"User uses Windows"},
-                          {"type":"GOAL","content":"User builds Jarvis"},
+                          {"type":"GOAL","content":"User builds Ultimate"},
                           {"type":"CONTEXT","content":"User has 16GB RAM"},
                           {"type":"EVENT","content":"User published article"}
                         ]

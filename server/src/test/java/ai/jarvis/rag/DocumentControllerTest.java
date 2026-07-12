@@ -2,7 +2,7 @@ package ai.ultimate.rag;
 
 import ai.ultimate.config.SecurityConfig;
 import ai.ultimate.config.TestSecurityConfig;
-import ai.ultimate.config.WithMockJarvisUser;
+import ai.ultimate.config.WithMockUltimateUser;
 import ai.ultimate.security.jwt.JwtAuthenticationFilter;
 import ai.ultimate.security.jwt.JwtService;
 import org.junit.jupiter.api.DisplayName;
@@ -35,7 +35,7 @@ class DocumentControllerTest {
     @Nested
     @WebFluxTest(controllers = DocumentController.class)
     @Import(TestSecurityConfig.class)
-    @WithMockJarvisUser(principal = USER_ID_RAW)
+    @WithMockUltimateUser(principal = USER_ID_RAW)
     @DisplayName("When user is authenticated")
     class AuthenticatedTests {
 

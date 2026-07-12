@@ -7,10 +7,10 @@ import jakarta.annotation.PostConstruct;
 @Service
 public class RuntimeSettingsService {
 
-    @Value("${jarvis.voice.tts.voice:}")
+    @Value("${Ultimate.voice.tts.voice:}")
     private String initialVoiceName;
 
-    @Value("${jarvis.voice.tts.speed:1.0}")
+    @Value("${Ultimate.voice.tts.speed:1.0}")
     private double initialVoiceSpeed;
 
     private volatile String voiceName;

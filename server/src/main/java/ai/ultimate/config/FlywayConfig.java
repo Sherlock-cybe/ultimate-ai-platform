@@ -28,13 +28,13 @@ import org.springframework.context.annotation.Configuration;
 public class FlywayConfig {
 
     @Value("${spring.flyway.url:"
-            + "jdbc:postgresql://localhost:5433/jarvis}")
+            + "jdbc:postgresql://localhost:5433/Ultimate}")
     private String url;
 
-    @Value("${spring.flyway.user:jarvis}")
+    @Value("${spring.flyway.user:Ultimate}")
     private String user;
 
-    @Value("${spring.flyway.password:jarvis}")
+    @Value("${spring.flyway.password:Ultimate}")
     private String password;
 
     @Value("${spring.flyway.locations:"

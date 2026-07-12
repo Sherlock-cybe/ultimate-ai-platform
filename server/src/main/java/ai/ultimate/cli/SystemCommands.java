@@ -17,12 +17,12 @@ public class SystemCommands {
 
     @Command(
             name = "status",
-            description = "Show Jarvis system status"
+            description = "Show Ultimate system status"
     )
     public String status() {
 
         if (!http.isServerReachable()) {
-            return "Cannot connect to Jarvis server.\n"
+            return "Cannot connect to Ultimate server.\n"
                     + "Make sure it is running on port 8080.\n"
                     + "Run: ./mvnw spring-boot:run";
         }
@@ -43,7 +43,7 @@ public class SystemCommands {
 
             StringBuilder sb = new StringBuilder();
             sb.append("\n+----------------------------------+\n");
-            sb.append(  "|     Jarvis System Status         |\n");
+            sb.append(  "|     Ultimate System Status         |\n");
             sb.append(  "+----------------------------------+\n");
 
             if (components != null) {
@@ -88,12 +88,12 @@ public class SystemCommands {
     }
 
     @Command(
-            name = "jarvis-version",
-            description = "Show Jarvis version information"
+            name = "Ultimate-version",
+            description = "Show Ultimate version information"
     )
-    public String jarvisVersion() {
+    public String UltimateVersion() {
         return "\n"
-                + "Jarvis AI Platform\n"
+                + "Ultimate AI Platform\n"
                 + "------------------\n"
                 + "Version:       v0.1.0\n"
                 + "Spring Boot:   4.0.6\n"
@@ -101,7 +101,7 @@ public class SystemCommands {
                 + "Spring Shell:  4.0\n"
                 + "Java:          21\n"
                 + "GitHub:        "
-                + "github.com/sujankim/jarvis-ai-platform\n";
+                + "github.com/sujankim/Ultimate-ai-platform\n";
     }
 
     @Command(
@@ -112,11 +112,11 @@ public class SystemCommands {
         StringBuilder sb = new StringBuilder();
         sb.append("Running diagnostics...\n\n");
 
-        // Check Jarvis server
+        // Check Ultimate server
         if (http.isServerReachable()) {
-            sb.append("[OK] Jarvis server:  Running\n");
+            sb.append("[OK] Ultimate server:  Running\n");
         } else {
-            sb.append("[!!] Jarvis server:  Not running\n");
+            sb.append("[!!] Ultimate server:  Not running\n");
             sb.append("     Fix: ./mvnw spring-boot:run\n");
         }
 
@@ -159,11 +159,11 @@ public class SystemCommands {
         sb.append("\n");
         sb.append("USAGE TIPS:\n");
         sb.append(
-                "  jarvis:> login    - authenticate\n");
+                "  Ultimate:> login    - authenticate\n");
         sb.append(
-                "  jarvis:> chat     - start chatting\n");
+                "  Ultimate:> chat     - start chatting\n");
         sb.append(
-                "  jarvis:> session  - list sessions\n");
+                "  Ultimate:> session  - list sessions\n");
         sb.append(
                 "  NOTE: type messages INSIDE 'chat'\n");
 
@@ -172,17 +172,17 @@ public class SystemCommands {
 
     @Command(
             name = "about",
-            description = "Show Jarvis platform information"
+            description = "Show Ultimate platform information"
     )
     public String about() {
-        return "\nJarvis AI Platform v0.1.0\n"
+        return "\nUltimate AI Platform v0.1.0\n"
                 + "-------------------------\n"
                 + "Local-first AI assistant platform.\n\n"
                 + "Built with:\n"
                 + "  Java 21        | Spring Boot 4.0.6\n"
                 + "  Spring AI 2.0  | Spring Shell 4.0\n\n"
                 + "GitHub:\n"
-                + "  github.com/sujankim/jarvis-ai-platform\n\n"
+                + "  github.com/sujankim/Ultimate-ai-platform\n\n"
                 + "License: Apache-2.0\n\n"
                 + "Your AI. Your Data. Your Machine.\n";
     }

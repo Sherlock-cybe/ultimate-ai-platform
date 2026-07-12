@@ -10,30 +10,30 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 /**
- * Displays Jarvis banner on startup.
+ * Displays Ultimate banner on startup.
  * Checks for first-run via HTTP (not direct DB).
  * This avoids race condition with Flyway migrations.
  */
 @Slf4j
 @Component
 @Order(1)
-public class JarvisBanner implements ApplicationRunner {
+public class UltimateBanner implements ApplicationRunner {
 
     private static final String BANNER_SHOWN_KEY =
-            "jarvis.banner.shown";
+            "Ultimate.banner.shown";
 
     private static final String BANNER = """
 
             +==============================================+
             |                                            |
-            |       JARVIS AI PLATFORM v0.1.0            |
+            |       Ultimate AI PLATFORM v0.1.0            |
             |                                            |
             |  Local AI | Spring Boot 4 | Java 21        |
             |                                            |
             +--------------------------------------------+
             |  help      - all commands                  |
             |  login     - authenticate                  |
-            |  chat      - talk to Jarvis                |
+            |  chat      - talk to Ultimate                |
             |  status    - system health                 |
             +============================================+
             """;
@@ -44,7 +44,7 @@ public class JarvisBanner implements ApplicationRunner {
     private final LineReader lineReader;
 
     // NO UserRepository here — avoids Flyway race condition
-    public JarvisBanner(
+    public UltimateBanner(
             Environment environment,
             CliStateManager state,
             CliHttpClient http,

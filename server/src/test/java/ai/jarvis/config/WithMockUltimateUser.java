@@ -9,8 +9,8 @@ import org.springframework.security.test.context.support.WithSecurityContext;
 
 @Target({ ElementType.METHOD, ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
-@WithSecurityContext(factory = WithMockJarvisUserSecurityContextFactory.class)
-public @interface WithMockJarvisUser {
+@WithSecurityContext(factory = WithMockUltimateUserSecurityContextFactory.class)
+public @interface WithMockUltimateUser {
 
     String principal();
 

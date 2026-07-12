@@ -4,11 +4,11 @@
     <!-- File appender — ALL logs go here -->
     <appender name="FILE"
               class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${user.home}/.jarvis/logs/jarvis.log</file>
+        <file>${user.home}/.Ultimate/logs/Ultimate.log</file>
         <rollingPolicy
                 class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <fileNamePattern>
-                ${user.home}/.jarvis/logs/jarvis-%d{yyyy-MM-dd}.%i.log.gz
+                ${user.home}/.Ultimate/logs/Ultimate-%d{yyyy-MM-dd}.%i.log.gz
             </fileNamePattern>
             <maxFileSize>50MB</maxFileSize>
             <maxHistory>30</maxHistory>
@@ -39,7 +39,7 @@
         <appender-ref ref="CONSOLE"/>
     </root>
 
-    <!-- Jarvis own classes: INFO to file only -->
+    <!-- Ultimate own classes: INFO to file only -->
     <logger name="ai.ultimate"
             level="INFO"
             additivity="false">

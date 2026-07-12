@@ -7,10 +7,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Central registry for all Jarvis tools.
+ * Central registry for all Ultimate tools.
  *
  * AUTO-DISCOVERY:
- * Spring injects ALL JarvisTool beans automatically.
+ * Spring injects ALL UltimateTool beans automatically.
  * New tool = add @Component — zero registry changes.
  *
  * USAGE BY AiOrchestrator:
@@ -26,13 +26,13 @@ import java.util.List;
 @Component
 public class ToolRegistry {
 
-    private final List<JarvisTool> tools;
+    private final List<UltimateTool> tools;
 
     /**
-     * Spring injects all JarvisTool beans.
+     * Spring injects all UltimateTool beans.
      * List is populated at startup automatically.
      */
-    public ToolRegistry(List<JarvisTool> tools) {
+    public ToolRegistry(List<UltimateTool> tools) {
         this.tools = Collections
                 .unmodifiableList(tools);
 
@@ -53,7 +53,7 @@ public class ToolRegistry {
      *
      * @return unmodifiable list of all tools
      */
-    public List<JarvisTool> getAll() {
+    public List<UltimateTool> getAll() {
         return tools;
     }
 

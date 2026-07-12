@@ -93,7 +93,7 @@ public class SystemTextToSpeechService implements TextToSpeechService {
     }
 
     private byte[] generateAudio(String text) throws Exception {
-        File tempFile = File.createTempFile("jarvis-tts-", ".wav");
+        File tempFile = File.createTempFile("Ultimate-tts-", ".wav");
         tempFile.deleteOnExit();
 
         String currentVoiceName = runtimeSettingsService.getVoiceName();
@@ -199,7 +199,7 @@ public class SystemTextToSpeechService implements TextToSpeechService {
     }
 
     private void generateMacAudio(String text, File outputFile, String voiceName, double voiceSpeed) throws Exception {
-        File aiffFile = File.createTempFile("jarvis-tts-", ".aiff");
+        File aiffFile = File.createTempFile("Ultimate-tts-", ".aiff");
         aiffFile.deleteOnExit();
 
         try {

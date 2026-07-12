@@ -1,6 +1,6 @@
 package ai.ultimate.security;
 
-import ai.ultimate.config.JarvisProperties;
+import ai.ultimate.config.UltimateProperties;
 import ai.ultimate.security.jwt.JwtService;
 import ai.ultimate.user.User;
 import ai.ultimate.user.UserRole;
@@ -22,63 +22,63 @@ class JwtServiceTest {
 
     @BeforeEach
     void setUp() {
-        // Build test JarvisProperties
-        JarvisProperties.JwtProperties jwtProps =
-                new JarvisProperties.JwtProperties(
+        // Build test UltimateProperties
+        UltimateProperties.JwtProperties jwtProps =
+                new UltimateProperties.JwtProperties(
                         "test-secret-key-minimum-32-characters-long",
                         Duration.ofMinutes(15),
                         Duration.ofDays(7),
-                        "jarvis-ai-platform"
+                        "Ultimate-ai-platform"
                 );
 
-        JarvisProperties.SecurityProperties secProps =
-                new JarvisProperties.SecurityProperties(
+        UltimateProperties.SecurityProperties secProps =
+                new UltimateProperties.SecurityProperties(
                         jwtProps,
-                        new JarvisProperties
+                        new UltimateProperties
                                 .RateLimitingProperties(
                                 true, 30, 5, 10),
-                        new JarvisProperties
+                        new UltimateProperties
                                 .Argon2Properties(
                                 65536, 3, 1, 32, 16)
                 );
 
-        JarvisProperties props = new JarvisProperties(
+        UltimateProperties props = new UltimateProperties(
                 "0.1.0-SNAPSHOT",
                 secProps,
-                new JarvisProperties.AiProperties(
+                new UltimateProperties.AiProperties(
                         "ollama", "gemini",
                         Duration.ofSeconds(3),
-                        new JarvisProperties
+                        new UltimateProperties
                                 .StreamingProperties(
                                 Duration.ofSeconds(120), 1),
-                        new JarvisProperties
+                        new UltimateProperties
                                 .ContextProperties(
                                 8000, 2000, 25, 20, 6),
-                        new JarvisProperties
+                        new UltimateProperties
                                 .GuardrailProperties(
                                 10000, true)
                 ),
-                new JarvisProperties.CliProperties(
-                        "~/.jarvis",
-                        "~/.jarvis/logs",
-                        "~/.jarvis/auth.json",
-                        "~/.jarvis/session.json",
-                        "~/.jarvis/preferences.json"
+                new UltimateProperties.CliProperties(
+                        "~/.Ultimate",
+                        "~/.Ultimate/logs",
+                        "~/.Ultimate/auth.json",
+                        "~/.Ultimate/session.json",
+                        "~/.Ultimate/preferences.json"
                 ),
-                new JarvisProperties
+                new UltimateProperties
                         .ObservabilityProperties(
                         true, true, true,
                         Duration.ofMinutes(5)),
 
                 // Added VoiceProperties (6th arg)
-                // JarvisProperties record now requires it
+                // UltimateProperties record now requires it
                 // Use defaults: empty voice name, speed 1.0
-                new JarvisProperties.VoiceProperties(
-                        new JarvisProperties.WhisperProperties(
+                new UltimateProperties.VoiceProperties(
+                        new UltimateProperties.WhisperProperties(
                                 "https://api.groq.com/openai/v1",
                                 "",
                                 "whisper-large-v3-turbo"),
-                        new JarvisProperties.TtsProperties(
+                        new UltimateProperties.TtsProperties(
                                 true,
                                 "",
                                 1.0)
@@ -90,7 +90,7 @@ class JwtServiceTest {
         testUser = new User(
                 UUID.randomUUID(),
                 "dravin",
-                "dravin@jarvis.ai",
+                "dravin@Ultimate.ai",
                 "$2a$12$hashedpassword",
                 "Dravin",
                 UserRole.ADMIN,

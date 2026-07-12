@@ -14,12 +14,12 @@ import org.springframework.context.annotation.Configuration;
 public class SwaggerConfig {
 
     @Bean
-    public OpenAPI jarvisOpenAPI() {
+    public OpenAPI UltimateOpenAPI() {
         return new OpenAPI()
 
                 // ─── Project Info ────────────────────────────────
                 .info(new Info()
-                        .title("Jarvis AI Platform API")
+                        .title("Ultimate AI Platform API")
                         .description(
                                 "Local-first, open-source AI assistant. " +
                                         "Built with Spring Boot 4 and Spring AI 2."
@@ -27,7 +27,7 @@ public class SwaggerConfig {
                         .version("0.1.0-SNAPSHOT")
                         .contact(new Contact()
                                 .name("Sujan")
-                                .url("https://github.com/sujankim/jarvis-ai-platform")
+                                .url("https://github.com/sujankim/Ultimate-ai-platform")
                         )
                         .license(new License()
                                 .name("Apache 2.0")

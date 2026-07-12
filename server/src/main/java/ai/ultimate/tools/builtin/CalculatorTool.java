@@ -1,6 +1,6 @@
 package ai.ultimate.tools.builtin;
 
-import ai.ultimate.tools.JarvisTool;
+import ai.ultimate.tools.UltimateTool;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.tool.annotation.Tool;
 import org.springframework.ai.tool.annotation.ToolParam;
@@ -41,7 +41,7 @@ import net.objecthunter.exp4j.ExpressionBuilder;
  */
 @Slf4j
 @Component
-public class CalculatorTool implements JarvisTool {
+public class CalculatorTool implements UltimateTool {
 
     /**
      * Evaluate a mathematical expression.

@@ -58,12 +58,12 @@ public class WhisperTranscriptionService {
 
     public WhisperTranscriptionService(
             WebClient.Builder webClientBuilder,
-            @Value("${jarvis.voice.whisper.base-url:"
+            @Value("${Ultimate.voice.whisper.base-url:"
                     + "https://api.groq.com/openai/v1}")
             String baseUrl,
-            @Value("${jarvis.voice.whisper.api-key:}")
+            @Value("${Ultimate.voice.whisper.api-key:}")
             String apiKey,
-            @Value("${jarvis.voice.whisper.model:"
+            @Value("${Ultimate.voice.whisper.model:"
                     + "whisper-large-v3-turbo}")
             String model) {
 

@@ -1,14 +1,14 @@
 package ai.ultimate.memory;
 
 /**
- * Types of memories Jarvis stores about users.
+ * Types of memories Ultimate stores about users.
  *
  * FACT:       True information about the user
  *             "User's name is Dravin"
  *             "User has 16GB RAM"
  *
  * GOAL:       What the user is working toward
- *             "Building Jarvis AI Platform"
+ *             "Building Ultimate AI Platform"
  *             "Learning Spring AI"
  *
  * PREFERENCE: How the user likes things done

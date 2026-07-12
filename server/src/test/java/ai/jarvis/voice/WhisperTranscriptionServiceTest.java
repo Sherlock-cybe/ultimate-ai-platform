@@ -166,13 +166,13 @@ class WhisperTranscriptionServiceTest {
     @Test
     @DisplayName("transcribe() returns text on success")
     void shouldReturnTranscribedText() {
-        stubPostChain(Mono.just("Hello from Jarvis"));
+        stubPostChain(Mono.just("Hello from Ultimate"));
 
         StepVerifier
                 .create(serviceWithKey
                         .transcribe(
                                 new byte[]{1, 2, 3}))
-                .expectNext("Hello from Jarvis")
+                .expectNext("Hello from Ultimate")
                 .verifyComplete();
     }
 
@@ -181,13 +181,13 @@ class WhisperTranscriptionServiceTest {
     void shouldTrimTranscribedText() {
         // Whisper API often returns trailing newlines
         stubPostChain(Mono.just(
-                "  Hello Jarvis  \n"));
+                "  Hello Ultimate  \n"));
 
         StepVerifier
                 .create(serviceWithKey
                         .transcribe(
                                 new byte[]{1, 2, 3}))
-                .expectNext("Hello Jarvis")
+                .expectNext("Hello Ultimate")
                 .verifyComplete();
     }
 
