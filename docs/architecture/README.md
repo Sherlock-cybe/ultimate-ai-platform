@@ -4,10 +4,6 @@
 
 The diagram below shows the complete request flow from user input to AI response.
 
-## System Architecture
-
-![System Architecture](diagrams/system-overview.png)
-
 ## Request Flow
 
 ```text
