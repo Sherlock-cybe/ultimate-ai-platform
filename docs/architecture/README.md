@@ -1,4 +1,4 @@
-# Jarvis AI Platform — Architecture
+# UltimateAI Platform — Architecture
 
 ## System Overview
 
