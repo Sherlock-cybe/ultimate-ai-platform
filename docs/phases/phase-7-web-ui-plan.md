@@ -1,3 +1,4 @@
+![UltimateAI Platform Logo](https://github.com/iyeanur6-cyber/ultimate-ai-platform/blob/main/docs/UltimateAI.png)
 # Phase 7 — Web UI Page Plan
 
 ## Tech Stack (TBD — decision July 14, 2026)
