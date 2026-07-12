@@ -28,7 +28,7 @@ UltimateAI is an enterprise-grade modular AI orchestration platform that runs en
 
 ---
 
-## ⚡ Quick Start (Termux / Native Host)
+## ⚡ Quick Start (Native Host)
 
 ### Prerequisites
 | Infrastructure Subsystem | Target Version | Operational Purpose |
