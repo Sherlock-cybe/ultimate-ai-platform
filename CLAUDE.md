@@ -1,10 +1,10 @@
-# Jarvis AI Platform — Claude Instructions
+# UltimateAI  Platform — Claude Instructions
 
 ## Project Context
 
-Jarvis is a local-first, open-source AI assistant platform built with the Java/Spring ecosystem.
+UltimateAI is a local-first, open-source AI assistant platform built with the Java/Spring ecosystem.
 
-GitHub: https://github.com/sujankim/jarvis-ai-platform
+GitHub: https://github.com/iyeanur6-cyber/ultimate-ai-platform
 
 ### Core Philosophy
 
