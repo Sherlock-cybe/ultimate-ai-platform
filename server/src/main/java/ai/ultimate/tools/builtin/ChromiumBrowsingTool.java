@@ -15,6 +15,7 @@ import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -35,7 +36,6 @@ public class ChromiumBrowsingTool implements UltimateTool {
     private static final int MAX_CAPTURED_OUTPUT_CHARS = 50_000;
     private static final Duration BROWSER_TIMEOUT = Duration.ofSeconds(30);
     private static final Duration SESSION_BUDGET_WINDOW = Duration.ofMinutes(30);
-    private static final String DEFAULT_SESSION_KEY = "chromium-browsing";
     private static final int MAX_URL_LENGTH = 2_048;
     private static final int DEFAULT_WIDTH = 1280;
     private static final int DEFAULT_HEIGHT = 720;
@@ -76,13 +76,19 @@ public class ChromiumBrowsingTool implements UltimateTool {
             return "Environment Error: No Chrome or Chromium executable was found on this host.";
         }
 
-        String sessionKey = workflowBudgetKey();
+        // Fix 1: Generate dynamic request-scoped session keys rather than global static strings
+        String targetHost = URI.create(url.trim()).getHost();
+        String sessionKey = workflowBudgetKey(targetHost);
+        
         if (!reserveCredits(sessionKey, processingCredits)) {
             return "Budget Enforcement: Chromium browsing session refused because the 200 credit workflow cap would be exceeded.";
         }
 
         Path runtimeDir = null;
         Process browserProcess = null;
+        Thread stdoutReader = null;
+        Thread stderrReader = null;
+        
         try {
             runtimeDir = Files.createTempDirectory("ultimate-chromium-" + UUID.randomUUID());
             Path profileDir = runtimeDir.resolve("profile");
@@ -91,10 +97,18 @@ public class ChromiumBrowsingTool implements UltimateTool {
             Files.createDirectories(profileDir);
             Files.createDirectories(cacheDir);
 
+            InetAddress resolvedAddress = InetAddress.getAllByName(targetHost)[0];
+            String resolvedIp = resolvedAddress.getHostAddress();
+            if (resolvedAddress instanceof Inet6Address) {
+                resolvedIp = "[" + resolvedIp + "]";
+            }
+
             List<String> command = buildCommand(
                     browserBinary.get(),
                     sanitizeCaptureMode(captureMode),
                     url.trim(),
+                    targetHost,
+                    resolvedIp,
                     headed,
                     profileDir,
                     cacheDir,
@@ -106,10 +120,10 @@ public class ChromiumBrowsingTool implements UltimateTool {
             browserProcess = runningProcess;
 
             BoundedOutput output = new BoundedOutput(MAX_CAPTURED_OUTPUT_CHARS);
-            Thread stdoutReader = new Thread(
+            stdoutReader = new Thread(
                     () -> copyStream(runningProcess.getInputStream(), output, "[stdout] "),
                     "chromium-stdout-reader");
-            Thread stderrReader = new Thread(
+            stderrReader = new Thread(
                     () -> copyStream(runningProcess.getErrorStream(), output, "[stderr] "),
                     "chromium-stderr-reader");
             stdoutReader.start();
@@ -118,6 +132,13 @@ public class ChromiumBrowsingTool implements UltimateTool {
             boolean completed = runningProcess.waitFor(BROWSER_TIMEOUT.toSeconds(), TimeUnit.SECONDS);
             if (!completed) {
                 destroyProcessTree(runningProcess);
+                // Fix 2: Bounded join safety on timeout block to wipe unmanaged stream readers cleanly
+                try {
+                    stdoutReader.join(2000);
+                    stderrReader.join(2000);
+                } catch (InterruptedException ignored) {
+                    Thread.currentThread().interrupt();
+                }
                 releaseCredits(sessionKey, processingCredits);
                 return "Watchdog Interdiction: Chromium browsing exceeded the 30 second runtime limit.";
             }
@@ -135,11 +156,15 @@ public class ChromiumBrowsingTool implements UltimateTool {
                     screenshotSummary);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
+            if (stdoutReader != null && stderrReader != null) {
+                stdoutReader.interrupt();
+                stderrReader.interrupt();
+            }
             releaseCredits(sessionKey, processingCredits);
             return "Infrastructure Process Lifecycle Failure: Chromium browsing was interrupted.";
         } catch (Exception e) {
             releaseCredits(sessionKey, processingCredits);
-            return "Infrastructure Process Lifecycle Failure: " + e.getMessage();
+            return "Infrastructure Process Lifecycle Failure: " + + (e.getMessage() != null ? e.getMessage() : e.toString());
         } finally {
             if (browserProcess != null) {
                 destroyProcessTree(browserProcess);
@@ -216,8 +241,11 @@ public class ChromiumBrowsingTool implements UltimateTool {
             return false;
         }
         if (address instanceof Inet6Address) {
-            byte first = address.getAddress()[0];
-            return (first & 0xfe) != 0xfc;
+            byte[] bytes = address.getAddress();
+            if (bytes.length == 16) {
+                int first = bytes[0] & 0xff;
+                return (first & 0xfe) != 0xfc; // Excludes unique local addresses (fc00::/7)
+            }
         }
         return true;
     }
@@ -251,14 +279,19 @@ public class ChromiumBrowsingTool implements UltimateTool {
         budget.creditsUsed.updateAndGet(used -> Math.max(0, used - processingCredits));
     }
 
-    private String workflowBudgetKey() {
-        return DEFAULT_SESSION_KEY;
+    private String workflowBudgetKey(String targetHost) {
+        if (targetHost != null && !targetHost.isBlank()) {
+            return "chromium-session-" + targetHost.hashCode();
+        }
+        return "chromium-session-anonymous-" + UUID.randomUUID();
     }
 
     private List<String> buildCommand(
             String browserBinary,
             String captureMode,
             String url,
+            String host,
+            String resolvedIp,
             boolean headed,
             Path profileDir,
             Path cacheDir,
@@ -277,6 +310,7 @@ public class ChromiumBrowsingTool implements UltimateTool {
         command.add("--disable-gpu");
         command.add("--disable-sync");
         command.add("--disable-translate");
+        command.add("--disable-local-storage");
         command.add("--metrics-recording-only");
         command.add("--no-default-browser-check");
         command.add("--no-first-run");
@@ -285,6 +319,10 @@ public class ChromiumBrowsingTool implements UltimateTool {
         command.add("--user-data-dir=" + profileDir);
         command.add("--disk-cache-dir=" + cacheDir);
         command.add("--window-size=" + DEFAULT_WIDTH + "," + DEFAULT_HEIGHT);
+        command.add("--proxy-server=direct://");
+        
+        // Fix 3: Strict host pinning parameter preventing DNS rebinding/redirect routing breakouts
+        command.add("--host-resolver-rules=MAP " + host + " " + resolvedIp + ", MAP * ~NOTFOUND");
 
         if ("dom".equals(captureMode) || "audit".equals(captureMode)) {
             command.add("--dump-dom");
@@ -337,7 +375,7 @@ public class ChromiumBrowsingTool implements UltimateTool {
                         }
                     });
         } catch (UnsupportedOperationException ignored) {
-            // Some Process fakes used in tests do not expose a ProcessHandle tree.
+            // Safe fallback for custom testing environments
         }
         if (process.isAlive()) {
             process.destroyForcibly();
@@ -419,11 +457,11 @@ public class ChromiumBrowsingTool implements UltimateTool {
                         try {
                             Files.deleteIfExists(path);
                         } catch (IOException ignored) {
-                            // Best-effort cleanup in finally.
+                            // Safe best-effort catch matrix
                         }
                     });
         } catch (IOException ignored) {
-            // Best-effort cleanup in finally.
+            // Safe best-effort catch matrix
         }
     }
 
@@ -440,7 +478,8 @@ public class ChromiumBrowsingTool implements UltimateTool {
         public Process start(List<String> command, Map<String, String> environment) throws IOException {
             ProcessBuilder processBuilder = new ProcessBuilder(command);
             processBuilder.environment().putAll(environment);
-            return processBuilder.start();
+            return processBuilder.start()
+                          
         }
     }
 
@@ -489,4 +528,4 @@ public class ChromiumBrowsingTool implements UltimateTool {
             this.expiresAt = expiresAt;
         }
     }
-}
+}  
