@@ -76,7 +76,6 @@ public class ChromiumBrowsingTool implements UltimateTool {
             return "Environment Error: No Chrome or Chromium executable was found on this host.";
         }
 
-        // Fix 1: Generate dynamic request-scoped session keys rather than global static strings
         String targetHost = URI.create(url.trim()).getHost();
         String sessionKey = workflowBudgetKey(targetHost);
         
@@ -132,13 +131,10 @@ public class ChromiumBrowsingTool implements UltimateTool {
             boolean completed = runningProcess.waitFor(BROWSER_TIMEOUT.toSeconds(), TimeUnit.SECONDS);
             if (!completed) {
                 destroyProcessTree(runningProcess);
-                // Fix 2: Bounded join safety on timeout block to wipe unmanaged stream readers cleanly
                 try {
-                    stdoutReader.join(2000);
-                    stderrReader.join(2000);
-                } catch (InterruptedException ignored) {
-                    Thread.currentThread().interrupt();
-                }
+                    stdoutThread.join(2000);
+                    stderrThread.join(2000);
+                } catch (Exception ignored) {}
                 releaseCredits(sessionKey, processingCredits);
                 return "Watchdog Interdiction: Chromium browsing exceeded the 30 second runtime limit.";
             }
@@ -164,8 +160,8 @@ public class ChromiumBrowsingTool implements UltimateTool {
             return "Infrastructure Process Lifecycle Failure: Chromium browsing was interrupted.";
         } catch (Exception e) {
             releaseCredits(sessionKey, processingCredits);
-            return "Infrastructure Process Lifecycle Failure: " + + (e.getMessage() != null ? e.getMessage() : e.toString());
-        } finally {
+            return "Infrastructure Process Lifecycle Failure: " + (e.getMessage() != null ? e.getMessage() : e.toString());
+        } finaly {
             if (browserProcess != null) {
                 destroyProcessTree(browserProcess);
             }
@@ -244,7 +240,7 @@ public class ChromiumBrowsingTool implements UltimateTool {
             byte[] bytes = address.getAddress();
             if (bytes.length == 16) {
                 int first = bytes[0] & 0xff;
-                return (first & 0xfe) != 0xfc; // Excludes unique local addresses (fc00::/7)
+                return (first & 0xfe) != 0xfc;
             }
         }
         return true;
@@ -320,8 +316,6 @@ public class ChromiumBrowsingTool implements UltimateTool {
         command.add("--disk-cache-dir=" + cacheDir);
         command.add("--window-size=" + DEFAULT_WIDTH + "," + DEFAULT_HEIGHT);
         command.add("--proxy-server=direct://");
-        
-        // Fix 3: Strict host pinning parameter preventing DNS rebinding/redirect routing breakouts
         command.add("--host-resolver-rules=MAP " + host + " " + resolvedIp + ", MAP * ~NOTFOUND");
 
         if ("dom".equals(captureMode) || "audit".equals(captureMode)) {
@@ -374,9 +368,7 @@ public class ChromiumBrowsingTool implements UltimateTool {
                             descendant.destroyForcibly();
                         }
                     });
-        } catch (UnsupportedOperationException ignored) {
-            // Safe fallback for custom testing environments
-        }
+        } catch (UnsupportedOperationException ignored) {}
         if (process.isAlive()) {
             process.destroyForcibly();
         }
@@ -456,13 +448,9 @@ public class ChromiumBrowsingTool implements UltimateTool {
                     .forEach(path -> {
                         try {
                             Files.deleteIfExists(path);
-                        } catch (IOException ignored) {
-                            // Safe best-effort catch matrix
-                        }
+                        } catch (IOException ignored) {}
                     });
-        } catch (IOException ignored) {
-            // Safe best-effort catch matrix
-        }
+        } catch (IOException ignored) {}
     }
 
     public interface ProcessExecutor {
@@ -478,8 +466,7 @@ public class ChromiumBrowsingTool implements UltimateTool {
         public Process start(List<String> command, Map<String, String> environment) throws IOException {
             ProcessBuilder processBuilder = new ProcessBuilder(command);
             processBuilder.environment().putAll(environment);
-            return processBuilder.start()
-                          
+            return processBuilder.start();
         }
     }
 
@@ -528,4 +515,4 @@ public class ChromiumBrowsingTool implements UltimateTool {
             this.expiresAt = expiresAt;
         }
     }
-}  
+}
